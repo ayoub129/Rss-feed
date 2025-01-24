@@ -37,6 +37,7 @@ def generate_json_feed(records):
     
     for record in records:
         fields = record.get('fields', {})
+        print(fields)
         title = fields.get('json_feed_title (from newsID_RSS_source)', 'No Title')
         image = fields.get('render_queue_image (from newsID_RSS_source)', 'No Image')
         link = fields.get('finalCreatomateURL', '#')
