@@ -1,18 +1,14 @@
-import os
 from flask import Flask, jsonify
-from dotenv import load_dotenv
 import requests
 import datetime
 
-load_dotenv()
-
-AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
-BASE_ID = os.getenv('BASE_ID')
-TABLE_NAME = os.getenv('TABLE_NAME')
-VIEW_NAME = os.getenv('VIEW_NAME')
-AIRTABLE_URL = f'https://api.airtable.com/v0/{BASE_ID}/{TABLE_NAME}?view={VIEW_NAME}'
-
 app = Flask(__name__)
+
+AIRTABLE_API_KEY = 'pat020f2hMAEY6jou.c652527d54f2b4d8f1fee28d9b67caedbe00022809330988fa0c5a5a77656284'
+BASE_ID = 'app5OZyC2XgZLR81n'
+TABLE_NAME = 'incomingVideoJobs'
+VIEW_NAME = 'viwfsIthkEvzsjWWP'
+AIRTABLE_URL = f'https://api.airtable.com/v0/{BASE_ID}/{TABLE_NAME}?view={VIEW_NAME}'
 
 def fetch_airtable_data():
     headers = {
@@ -41,8 +37,8 @@ def generate_json_feed(records):
     
     for record in records:
         fields = record.get('fields', {})
-        title = fields.get('trimmedTitle', 'No Title')
-        image = fields.get('Image', 'No Image')
+        title = fields.get('json_feed_title (from newsID_RSS_source)', 'No Title')
+        image = fields.get('render_queue_image (from newsID_RSS_source)', 'No Image')
         link = fields.get('finalCreatomateURL', '#')
         newsID_RSS_source = fields.get('newsID_RSS_source', [])
         
@@ -68,7 +64,7 @@ def generate_json_feed(records):
             except requests.exceptions.RequestException as e:
                 print(f"Error fetching Airtable Link data: {e}")
 
-        created_at = fields.get('dateAndTime', datetime.datetime.utcnow().isoformat())
+        created_at = fields.get('createdTime', datetime.datetime.utcnow().isoformat())
 
         feed["channel"]["items"].append({
             "title": title,
