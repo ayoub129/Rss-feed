@@ -24,7 +24,7 @@ def generate_json_feed(records):
             "link": "https://www.automadic.io",
             "description": "RSS Feed for Automadic",
             "language": "en-us",
-            "copyright": "2024 Automadic. All rights reserved.",
+            "copyright": "2025 Automadic. All rights reserved.",
             "lastBuildDate": datetime.datetime.utcnow().isoformat(),
             "image": {
                 "url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=380,fit=crop,q=95/mjE9loky0pCQ8rqG/93010e24-496f-4b76-a995-bc1994638bb6-dOq4BJ8Z2Qs",
