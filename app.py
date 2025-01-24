@@ -10,7 +10,7 @@ AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
 BASE_ID = os.getenv('BASE_ID')
 TABLE_NAME = os.getenv('TABLE_NAME')
 VIEW_NAME = os.getenv('VIEW_NAME')
-AIRTABLE_URL = os.getenv('AIRTABLE_URL')
+AIRTABLE_URL = f'https://api.airtable.com/v0/{BASE_ID}/{TABLE_NAME}?view={VIEW_NAME}'
 
 app = Flask(__name__)
 
