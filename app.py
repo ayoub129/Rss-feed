@@ -1,13 +1,15 @@
+import os
 from flask import Flask, jsonify
+from dotenv import load_dotenv
 import requests
 import datetime
 
-app = Flask(__name__)
+load_dotenv()
 
-AIRTABLE_API_KEY = 'pat020f2hMAEY6jou.c652527d54f2b4d8f1fee28d9b67caedbe00022809330988fa0c5a5a77656284'
-BASE_ID = 'app5OZyC2XgZLR81n'
-TABLE_NAME = 'incomingVideoJobs'
-VIEW_NAME = 'viwfsIthkEvzsjWWP'
+AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
+BASE_ID = os.getenv('BASE_ID')
+TABLE_NAME = os.getenv('TABLE_NAME')
+VIEW_NAME = os.getenv('VIEW_NAME')
 AIRTABLE_URL = f'https://api.airtable.com/v0/{BASE_ID}/{TABLE_NAME}?view={VIEW_NAME}'
 
 def fetch_airtable_data():
